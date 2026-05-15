@@ -1,99 +1,129 @@
-# SafeTrace — Web Frontend (pre-built)
+# SafeTrace — AI-Powered Malicious URL Detection
 
-Next.js 14 + TypeScript + Tailwind project, **already ported from the design prototype**. Drop this folder into your monorepo as `apps/web/` and it works.
+[![Live Demo](https://img.shields.io/badge/demo-live-22d3ee?style=flat-square)](https://safetrace.vercel.app)
+[![Backend API](https://img.shields.io/badge/api-huggingface-yellow?style=flat-square)](https://huggingface.co/spaces/Sumitkr28/safetrace-api)
+[![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](LICENSE)
 
-## Quick start
+SafeTrace tells you whether a URL is **Safe, Suspicious, Phishing, Malware, or Defacement** in under 5 seconds — and shows *exactly why* with concrete forensic evidence. Final-year B.Tech CSE major project; built to look and feel like a real security product (think VirusTotal / urlscan.io), not a college demo.
+
+## What it does
+
+For every URL you paste:
+
+- **Stacking-ensemble ML classifier** (RandomForest + LightGBM + XGBoost + CatBoost → Logistic Regression meta-model) gives a verdict with SHAP feature explanations.
+- **Deep site analyzer** visits the page in a real headless browser, takes a screenshot, and inspects: WHOIS / TLS / DNS, HTML forms + iframes, JavaScript obfuscation patterns, perceptual-hash brand impersonation, scareware text overlays.
+- **Live threat intelligence** — Google Safe Browsing + URLhaus lookups in parallel.
+
+The result page surfaces **two streams of evidence side by side** — the ML model verdict and the deep-site forensics — so you can see them agree (high confidence) or disagree (worth investigating).
+
+## Live URLs
+
+- **Frontend** — <https://safetrace.vercel.app>
+- **Backend API** — <https://sumitkr28-safetrace-api.hf.space> (`/docs` for Swagger UI)
+- **Model weights** — <https://huggingface.co/Sumitkr28/safetrace-model>
+
+## Architecture
+
+```text
+┌────────────────────┐         ┌──────────────────────────┐         ┌────────────────────┐
+│  Next.js frontend  │  HTTPS  │     FastAPI backend      │   HTTP  │   HF Model repo    │
+│   on Vercel        │ ──────► │   on Hugging Face Space  │ ──────► │  (2 GB pickle)     │
+└────────────────────┘         │   Playwright + Chromium  │         └────────────────────┘
+                               │   ML stack + SHAP        │
+                               │   Threat intel (GSB +    │
+                               │   URLhaus) in parallel   │
+                               └──────────────────────────┘
+```
+
+100% free tier — Vercel Hobby + Hugging Face Spaces Docker (CPU basic, 16 GB RAM). $0/month total.
+
+## Tech stack
+
+| Layer | Technology |
+|---|---|
+| Frontend | Next.js 14 (App Router) · TypeScript · TailwindCSS · IBM Plex Sans / JetBrains Mono |
+| World map | `react-simple-maps` + Natural Earth `world-atlas` topojson |
+| Backend | FastAPI · Uvicorn · Python 3.11 |
+| ML | scikit-learn · XGBoost · LightGBM · CatBoost · SHAP (TreeExplainer) |
+| Browser automation | Playwright (Chromium headless) |
+| Brand impersonation | `imagehash` (pHash) |
+| State | In-memory `deque` only — fully stateless, no DB |
+| Hosting | Vercel (frontend) + Hugging Face Spaces (backend) + HF Model repo (weights) |
+| Threat feeds | Google Safe Browsing API · URLhaus |
+
+## Features
+
+- ⚡ **Sub-5-second verdict** for a single URL
+- 📊 **Aggregate risk score** (0–100) + 4 sub-scores (Network, HTML, JavaScript, Visual)
+- 🧠 **Explainable ML** — top SHAP features per prediction
+- 📸 **Real Playwright screenshots** inlined as base64 data URLs (no S3/R2)
+- 📋 **Bulk scan** — upload a CSV (≤ 500 rows), stream results via SSE
+- 🌍 **Threat dashboard** — live world map of recent scans, KPIs, brand impersonation chart
+- 🔁 **Fully stateless** — no database, in-memory ring buffer
+
+## Running locally
+
+You'll need Node.js 18+ and Python 3.11+.
+
+### Frontend
 
 ```bash
-cd apps/web
-cp .env.example .env.local        # edit NEXT_PUBLIC_API_URL to point at your FastAPI backend
+git clone https://github.com/Sumitkr28/Project--SafeTrace.git
+cd Project--SafeTrace
 npm install
-npm run dev                       # http://localhost:3000
+cp .env.example .env.local
+# edit NEXT_PUBLIC_API_URL → http://localhost:7860 to point at your local backend
+npm run dev
 ```
 
-If the backend isn't running yet, the UI still renders — `/scan` calls will fail with a toast, dashboard data shows zeros, but every screen displays correctly. The splash, animations, mesh background, world map continents, and verdict pages all work without a backend.
+Opens at <http://localhost:3000>.
 
-## What's wired up
+### Backend (separate repo)
 
-| File | Status |
-|---|---|
-| Splash intro (2.7s, click-to-skip, `?nosplash=1` to skip via URL) | ✅ |
-| Top nav with 4 routes + active state | ✅ |
-| Footer with toast links + 2026 copyright | ✅ |
-| Toast system (replaces prototype's `window.toast`) | ✅ |
-| Scan flow: empty → scanning → result, all states wired to real `/scan` | ✅ |
-| 4 verdict variants render from API response | ✅ |
-| Real Playwright screenshots via inline base64 data URLs | ✅ |
-| Bulk scan with live SSE progress | ✅ |
-| Dashboard with live world map, charts, KPIs | ✅ |
-| About / methodology static page | ✅ |
-| Particles background (toggleable behaviour preserved) | ✅ |
-| Every animation from the prototype | ✅ |
-
-## What's NOT here (intentional)
-
-- **No History page** — feature cut per the final plan
-- **No Tweaks panel** — design-time only, not for production
-- **No database** — backend uses in-memory deque
-- **No external storage** — screenshots come as base64 in the JSON response
-
-## Folder structure
-
+```bash
+git clone https://huggingface.co/spaces/Sumitkr28/safetrace-api
+cd safetrace-api
+pip install -r requirements.txt
+playwright install chromium
+# create a .env with:
+#   GOOGLE_SAFE_BROWSING_API_KEY=...
+#   URLHAUS_API_KEY=...
+uvicorn api:app --port 7860
 ```
-apps/web/
-├── app/
-│   ├── layout.tsx                # root layout — fonts + ToastProvider
-│   ├── _shell.tsx                # client shell — Splash + TopNav + Footer + Particles
-│   ├── page.tsx                  # / Scan
-│   ├── bulk/page.tsx             # /bulk
-│   ├── dashboard/page.tsx        # /dashboard
-│   ├── about/page.tsx            # /about
-│   └── globals.css               # all design tokens + keyframes (ported from theme.css)
+
+Backend starts at <http://localhost:7860>; the 2 GB model auto-downloads from the HF Model repo on first request.
+
+## API contract
+
+`POST /scan` body: `{ "url": "https://..." }` returns `ScanResult` (see [lib/types.ts](lib/types.ts) for the full shape). Other endpoints: `POST /bulk` (CSV → SSE stream), `GET /dashboard/stats`, `GET /healthz`.
+
+## Project structure
+
+```text
+.
+├── app/                    # Next.js App Router
+│   ├── page.tsx            # / Scan
+│   ├── bulk/page.tsx       # /bulk
+│   ├── dashboard/page.tsx  # /dashboard
+│   ├── about/page.tsx      # /about
+│   └── globals.css         # design tokens + keyframes
 ├── components/
-│   ├── icons.tsx                 # Ico component + all icon names
-│   ├── ui/                       # 13 primitives
-│   ├── chrome/                   # Logo, TopNav, Footer, Splash, Particles
-│   ├── scan/                     # AiMeshBackground, ScanEmpty, ScanProgress, ScanResult, ScreenshotMock
-│   └── dashboard/                # WorldMap, TimeSeriesChart, BrandBars
+│   ├── ui/                 # Button, Card, VerdictChip, …
+│   ├── chrome/             # Logo, TopNav, Footer, Splash, Particles
+│   ├── scan/               # Scan flow + AiMeshBackground
+│   └── dashboard/          # WorldMap, TimeSeriesChart, BrandBars
 ├── lib/
-│   ├── api.ts                    # scanUrl, getDashboardStats, bulkScan (SSE)
-│   └── types.ts                  # ScanResult + supporting types — keep in sync with backend
-├── hooks/useToast.tsx            # ToastProvider + useToast()
-├── package.json
-├── tsconfig.json
-├── next.config.mjs
-├── tailwind.config.ts
-├── postcss.config.js
-└── .env.example
+│   ├── api.ts              # fetch client for the FastAPI backend
+│   └── types.ts            # TypeScript types — mirror of the Pydantic schemas
+└── hooks/useToast.tsx
 ```
 
-## Wiring the backend
+## Acknowledgements
 
-The single source of truth for what the backend should return is `apps/web/lib/types.ts`. The FastAPI Pydantic schemas in `apps/api/models/schemas.py` must match `ScanResult`, `DashboardStats`, and `ScanPoint` field names + types exactly.
+- World map data: [Natural Earth](https://www.naturalearthdata.com/) via `world-atlas`
+- Threat feeds: [Google Safe Browsing](https://safebrowsing.google.com/) · [URLhaus](https://urlhaus.abuse.ch/)
+- Icons: [Lucide](https://lucide.dev/)
 
-The screenshot URL field is **a data URL**, not a remote URL:
-```python
-import base64
-data_url = f"data:image/png;base64,{base64.b64encode(png_bytes).decode()}"
-return ScanResult(..., screenshotUrl=data_url, ...)
-```
+## License
 
-## Deploying to Vercel
-
-1. Push the monorepo to GitHub.
-2. On Vercel, "Import Project" → set **Root Directory** to `apps/web`.
-3. Set environment variable: `NEXT_PUBLIC_API_URL=https://your-username-safetrace-api.hf.space`.
-4. Deploy. Auto-deploys on every push to `main`.
-
-## Where the design lives
-
-If you ever need to verify a visual detail, open `SafeTrace.html` (the prototype, in the same handoff bundle) in your browser. That file is the design source of truth. Every component in `components/` was ported from a corresponding chunk of that prototype.
-
-The original JSX prototype files are kept in the handoff bundle root for reference:
-- `theme.css` → `app/globals.css` (verbatim port)
-- `lib/icons.jsx` → `components/icons.tsx`
-- `lib/ui.jsx` → `components/ui/*.tsx`
-- `app.jsx` → `components/chrome/*.tsx`
-- `screens/scan.jsx` → `components/scan/*.tsx`
-- `screens/dashboard-about.jsx` → `app/{dashboard,about}/page.tsx` + `components/dashboard/*.tsx`
-- `screens/bulk-history.jsx` → `app/bulk/page.tsx` (History portion deleted)
+MIT — see [LICENSE](LICENSE).
