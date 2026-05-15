@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Sans, JetBrains_Mono } from "next/font/google";
-import { ReactNode } from "react";
+import { ReactNode, Suspense } from "react";
 
 import { Footer } from "@/components/chrome/Footer";
 import { Particles } from "@/components/chrome/Particles";
@@ -36,7 +36,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="en" className={`${sans.variable} ${mono.variable}`}>
       <body>
         <ToastProvider>
-          <AppShell>{children}</AppShell>
+          <Suspense fallback={null}>
+            <AppShell>{children}</AppShell>
+          </Suspense>
           <Toast />
         </ToastProvider>
       </body>
