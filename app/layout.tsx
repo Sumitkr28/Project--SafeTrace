@@ -29,6 +29,12 @@ export const metadata: Metadata = {
   title: "SafeTrace — AI-Powered URL Threat Detection",
   description:
     "Paste a URL. Our ML classifier and deep site forensic analyzer cross-check it in under five seconds.",
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+  },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

@@ -279,3 +279,153 @@ button { cursor: pointer; background: none; border: none; padding: 0; }
   0%   { top: -2px; }
   100% { top: calc(100% + 2px); }
 }
+
+/* ============================================================
+   Mobile responsive overrides — covers <= 768px (phones + small tablets)
+   Many components use inline style={{}} which beats class CSS, so we
+   target structural selectors with high specificity + !important where
+   needed to override inline grid templates and fixed widths.
+   ============================================================ */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    font-size: 14px;
+  }
+
+  /* Tighter container padding everywhere */
+  main {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  /* Top nav: shrink logo + collapse links */
+  nav, header {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+  nav a, nav button {
+    font-size: 12px !important;
+  }
+
+  /* Cards / containers — no fixed widths, fluid padding */
+  [style*="max-width"][style*="px"] {
+    max-width: 100% !important;
+  }
+  [style*="padding: 32px"], [style*="padding: 28px"], [style*="padding: 24px"] {
+    padding: 16px !important;
+  }
+  [style*="padding: 60px"], [style*="padding: 80px"] {
+    padding: 24px 16px !important;
+  }
+
+  /* Any 2-column grid → 1 column on mobile */
+  [style*="grid-template-columns: 1fr 1fr"],
+  [style*="gridTemplateColumns: \"1fr 1fr\""],
+  [style*="grid-template-columns:1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Scan result hero: stack verdict chip / url / confidence */
+  [style*="grid-template-columns: auto 1fr auto"] {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    text-align: center;
+  }
+
+  /* Sub-scores: keep them as 2x2 on phones (was 1 column) */
+  [style*="minmax(0, 1.5fr) minmax(0, 1fr)"],
+  [style*="grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Hero verdict number / titles — reduce huge desktop sizes */
+  h1 {
+    font-size: 24px !important;
+    line-height: 1.2 !important;
+  }
+  h2 {
+    font-size: 18px !important;
+  }
+  [style*="font-size: 40px"],
+  [style*="font-size: 48px"],
+  [style*="font-size: 56px"] {
+    font-size: 30px !important;
+  }
+  [style*="font-size: 32px"] {
+    font-size: 24px !important;
+  }
+  [style*="font-size: 28px"] {
+    font-size: 22px !important;
+  }
+  [style*="font-size: 24px"] {
+    font-size: 20px !important;
+  }
+
+  /* URL input + scan button: stack vertically + full width */
+  [style*="flex"][style*="gap"] input[type="text"],
+  input {
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Tables (Bulk page) — allow horizontal scroll instead of breaking layout */
+  table {
+    display: block;
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  /* World map — keep its aspect ratio but allow it to shrink */
+  [style*="aspect-ratio: 2 / 1"] {
+    aspect-ratio: 2 / 1 !important;
+  }
+
+  /* KPI card grid → 2 columns on mobile (was 4) */
+  [style*="repeat(4, 1fr)"],
+  [style*="grid-template-columns: repeat(4, 1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  [style*="repeat(3, 1fr)"],
+  [style*="grid-template-columns: repeat(3, 1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* Long URLs that overflow */
+  [style*="white-space: nowrap"] {
+    white-space: normal !important;
+    word-break: break-all !important;
+  }
+
+  /* Footer */
+  footer {
+    flex-direction: column !important;
+    gap: 10px !important;
+    text-align: center;
+  }
+
+  /* Make particles + radar mesh much subtler on mobile so they don't lag */
+  [style*="position: fixed"][style*="inset: 0"] svg {
+    opacity: 0.4 !important;
+  }
+}
+
+/* Extra-small phones */
+@media (max-width: 480px) {
+  body {
+    font-size: 13px;
+  }
+  [style*="font-size: 40px"],
+  [style*="font-size: 48px"] {
+    font-size: 26px !important;
+  }
+  /* Stack KPI cards to 1 column on tiniest screens */
+  [style*="repeat(4, 1fr)"],
+  [style*="grid-template-columns: repeat(4, 1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+}
