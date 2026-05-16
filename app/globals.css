@@ -429,3 +429,90 @@ button { cursor: pointer; background: none; border: none; padding: 0; }
     grid-template-columns: 1fr !important;
   }
 }
+
+/* ============================================================
+   Round 2 — targeted fixes after mobile testing
+   ============================================================ */
+@media (max-width: 768px) {
+  /* TopNav: make the 4 routes fit by shrinking everything + horizontal scroll if needed.
+     Hide the "AI · URL FORENSICS" tagline to free up logo space. */
+  header [style*="letter-spacing"]:not(a):not(button) {
+    /* tagline under logo */
+  }
+  nav {
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    flex-wrap: nowrap !important;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  nav::-webkit-scrollbar { display: none; }
+  nav a, nav button {
+    flex-shrink: 0 !important;
+    padding: 6px 10px !important;
+    font-size: 11px !important;
+    white-space: nowrap !important;
+  }
+  /* Hide AI · URL FORENSICS subtitle on phone to save space */
+  header span[style*="letter-spacing: 0.2em"],
+  header [style*="letter-spacing: 0.22em"],
+  header [style*="letter-spacing: 0.24em"] {
+    display: none !important;
+  }
+
+  /* Section header right-side buttons (Dashboard "Last 24h", "Export") — keep on one line */
+  button, a[role="button"], [style*="border-radius: 8px"] {
+    white-space: nowrap !important;
+  }
+  /* Buttons in header right-aligned area — flex row, no wrap, smaller */
+  [style*="display: flex"][style*="gap"] button,
+  [style*="display: flex"][style*="gap"] > [style*="padding"] {
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Dashboard KPI grid: repeat(4) → 2 columns */
+  [style*="grid-template-columns: repeat(4, 1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+  }
+  /* Bulk page stat strip: repeat(5) → 2 columns + tighter padding */
+  [style*="grid-template-columns: repeat(5, 1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+  }
+
+  /* Dashboard map + side-column: stack vertically */
+  [style*="grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr)"],
+  [style*="grid-template-columns:minmax(0,1.7fr) minmax(0,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Bulk table + Dashboard table: scroll horizontally instead of cramming */
+  [style*="grid-template-columns: 32px minmax(0, 1fr) 140px 90px 80px 60px"],
+  [style*="grid-template-columns: minmax(0,1fr) 120px 80px 100px 32px"] {
+    display: block !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+  }
+
+  /* Card titles + numbers inside KPI tiles: prevent letter-by-letter wrap */
+  [style*="font-size: 11"][style*="text-transform: uppercase"],
+  [style*="font-size: 12"][style*="text-transform: uppercase"],
+  [style*="text-transform: uppercase"][style*="letter-spacing"] {
+    white-space: normal !important;
+    word-break: keep-all !important;
+    overflow-wrap: break-word !important;
+  }
+
+  /* Footer: wrap links properly */
+  footer, footer > div {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 8px 14px !important;
+  }
+  footer a {
+    font-size: 11px !important;
+    white-space: nowrap !important;
+  }
+}
