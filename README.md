@@ -3,8 +3,8 @@
 > **A free tool that tells you if a website is safe to visit — in under 5 seconds.**
 
 <p align="center">
-  <a href="https://project-safe-trace.vercel.app">
-    <img src="https://img.shields.io/badge/Open%20Live%20Demo-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Open Live Demo" height="44" />
+  <a href="https://safetrace-ai.vercel.app">
+    <img src="https://img.shields.io/badge/SafeTrace--ai-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="SafeTrace-ai" height="44" />
   </a>
 </p>
 
