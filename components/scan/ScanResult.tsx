@@ -12,6 +12,7 @@ import { SubScoreRow } from "@/components/ui/SubScoreRow";
 import { VerdictChip } from "@/components/ui/VerdictChip";
 import { useToast } from "@/hooks/useToast";
 import { VERDICTS, type EvidenceItem, type ScanResult } from "@/lib/types";
+import { generateScanPdf } from "@/lib/generatePdf";
 import { ScreenshotMock } from "./ScreenshotMock";
 
 export interface ScanResultProps {
@@ -312,7 +313,14 @@ export function ScanResultView({ result: d, onAgain }: ScanResultProps) {
 
       <div style={{ display: "flex", gap: 12, justifyContent: "flex-end", flexWrap: "wrap" }}>
         <Button variant="ghost" icon="download"
-          onClick={() => toast({ kind: "success", title: "PDF report generated", message: `Saved as safetrace_${d.verdict}_${Date.now()}.pdf` })}>
+          onClick={() => {
+            try {
+              generateScanPdf(d);
+              toast({ kind: "success", title: "PDF downloaded", message: "Check your Downloads folder" });
+            } catch (e) {
+              toast({ kind: "warn", title: "PDF generation failed", message: e instanceof Error ? e.message : "Unknown error" });
+            }
+          }}>
           Download PDF report
         </Button>
         <Button variant="ghost" icon="share"

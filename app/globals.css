@@ -774,3 +774,72 @@ button { cursor: pointer; background: none; border: none; padding: 0; }
     padding: 0 8px !important;
   }
 }
+
+/* ============================================================
+   Round 6 — Result page polish + About force-stack + SHAP graph
+   ============================================================ */
+@media (max-width: 768px) {
+  /* SHAP feature graph: replace 3-col [bar | weight | bar] with single column flow */
+  div[style*="grid-template-columns: 1fr 60px 1fr"] {
+    grid-template-columns: 1fr 56px !important;
+    gap: 8px !important;
+    font-size: 11px !important;
+  }
+  /* The right-side bars in SHAP rows shouldn't push out of viewport */
+  div[style*="grid-template-columns: 1fr 60px 1fr"] > * {
+    min-width: 0 !important;
+    overflow: hidden !important;
+  }
+  /* Hide the negative/risk left bar on phone (keep only weight + feature name) */
+  div[style*="grid-template-columns: 1fr 60px 1fr"] > *:first-child {
+    display: none !important;
+  }
+
+  /* About page — FORCE single column for the process flow + 4-layers grid */
+  div[style*="repeat(4, 1fr)"] {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    overflow-x: visible !important;
+  }
+  /* Hide the inter-card arrow svgs that point right between steps */
+  div[style*="repeat(4, 1fr)"] svg[style*="flex-shrink"] {
+    display: none !important;
+  }
+  /* About: repeat(2, 1fr) → 1 column too (it's a 2-card row that still crams) */
+  div[style*="repeat(2, 1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Scan result page screenshot side — make it shrink properly */
+  /* The 1.5fr+1fr grid already stacks via earlier rule; ensure the screenshot card itself fits */
+  [style*="aspect-ratio: 4 / 3"] {
+    max-width: 100% !important;
+  }
+  /* "Live screenshot" panel container — clamp width */
+  div[style*="padding: 24px 32px"][style*="flex-direction: column"] {
+    padding: 14px !important;
+  }
+
+  /* Result page action buttons (Download PDF / Share / Scan another) — full width stack */
+  div[style*="justify-content: flex-end"][style*="flex-wrap: wrap"] button {
+    flex: 1 1 100% !important;
+    justify-content: center !important;
+  }
+
+  /* Evidence accordion: full width, no horizontal overflow */
+  [role="region"], details {
+    max-width: 100% !important;
+  }
+  /* Code blocks inside evidence — let them scroll horizontally so layout doesn't break */
+  pre, code {
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    word-break: break-word !important;
+    white-space: pre-wrap !important;
+  }
+
+  /* "Try →" + example chips on scan page — already fixed but verify chip text size */
+  [style*="border-radius: 999"] {
+    font-size: 11px !important;
+  }
+}
