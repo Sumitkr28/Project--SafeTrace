@@ -40,11 +40,11 @@ export default function AboutPage() {
         sub="Two independent streams of evidence. They have to agree before we call something safe."
       />
 
-      <Card padding={32} style={{ marginBottom: 24 }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr auto 1fr auto 1fr", alignItems: "stretch", gap: 16 }}>
+      <Card padding={32} className="about-method-card" style={{ marginBottom: 24 }}>
+        <div className="about-pipeline-flow" style={{ display: "grid", gridTemplateColumns: "1fr auto 1fr auto 1fr", alignItems: "stretch", gap: 16 }}>
           {PIPELINE.map((s, i, arr) => (
             <Fragment key={s.num}>
-              <div style={{ padding: 20, background: "var(--bg-inset)", border: "1px solid var(--border)", borderRadius: "var(--r-md)", display: "flex", flexDirection: "column", gap: 10 }}>
+              <div className="about-pipeline-step" style={{ padding: 20, background: "var(--bg-inset)", border: "1px solid var(--border)", borderRadius: "var(--r-md)", display: "flex", flexDirection: "column", gap: 10 }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                   <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--accent)", letterSpacing: "0.12em" }}>{s.num}</span>
                   <span style={{ color: "var(--accent)" }}><Ico name={s.icon} size={18} /></span>
@@ -53,7 +53,7 @@ export default function AboutPage() {
                 <p style={{ fontSize: 12.5, color: "var(--text-muted)", lineHeight: 1.5, margin: 0 }}>{s.desc}</p>
               </div>
               {i < arr.length - 1 && (
-                <div style={{ display: "flex", alignItems: "center", color: "var(--text-dim)" }}>
+                <div className="about-pipeline-arrow" style={{ display: "flex", alignItems: "center", color: "var(--text-dim)" }}>
                   <Ico name="arrow-right" size={20} />
                 </div>
               )}
