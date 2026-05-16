@@ -4,12 +4,8 @@
 
 <p align="center">
   <a href="https://project-safe-trace.vercel.app">
-    <img src="https://img.shields.io/badge/🛡️_Try_SafeTrace_Live-22d3ee?style=for-the-badge&logoColor=white" alt="Live Demo" />
+    <img src="https://img.shields.io/badge/Open%20Live%20Demo-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Open Live Demo" height="44" />
   </a>
-</p>
-
-<p align="center">
-  <a href="https://project-safe-trace.vercel.app"><b>👉 project-safe-trace.vercel.app</b></a>
 </p>
 
 ---
@@ -76,8 +72,13 @@ Fully stateless — no database, no user accounts, no tracking. Screenshots are 
 
 ## Built by
 
-**Sumit Kumar** — Final-year B.Tech CSE major project.
-Looking for opportunities? Connect on [LinkedIn](https://www.linkedin.com/in/sumitkr28) or email me.
+**Sumit Kumar** — AI/ML Engineer.
+
+Connect with me:
+
+- 📧 [sumitchoudhary2812@gmail.com](mailto:sumitchoudhary2812@gmail.com)
+- 💼 [LinkedIn](https://www.linkedin.com/in/sumitkr28)
+- 💻 [GitHub](https://github.com/Sumitkr28)
 
 ## For developers — running locally
 
