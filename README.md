@@ -2,12 +2,14 @@
 
 > **A free tool that tells you if a website is safe to visit — in under 5 seconds.**
 
-<p align="center">
-  <strong>Try&nbsp;&nbsp;→&nbsp;&nbsp;</strong>
-  <a href="https://safetrace-ai.vercel.app">
-    <img src="https://img.shields.io/badge/SafeTrace--ai-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="SafeTrace-ai" height="36" />
-  </a>
-</p>
+<table align="center"><tr>
+  <td valign="middle"><strong>Try&nbsp;&nbsp;→</strong></td>
+  <td valign="middle">
+    <a href="https://safetrace-ai.vercel.app">
+      <img src="https://img.shields.io/badge/SafeTrace--ai-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="SafeTrace-ai" height="36" />
+    </a>
+  </td>
+</tr></table>
 
 ---
 
