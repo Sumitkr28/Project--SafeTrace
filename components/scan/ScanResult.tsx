@@ -318,7 +318,7 @@ export function ScanResultView({ result: d, onAgain }: ScanResultProps) {
               generateScanPdf(d);
               toast({ kind: "success", title: "PDF downloaded", message: "Check your Downloads folder" });
             } catch (e) {
-              toast({ kind: "warn", title: "PDF generation failed", message: e instanceof Error ? e.message : "Unknown error" });
+              toast({ kind: "error", title: "PDF generation failed", message: e instanceof Error ? e.message : "Unknown error" });
             }
           }}>
           Download PDF report
