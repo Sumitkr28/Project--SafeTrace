@@ -682,3 +682,95 @@ button { cursor: pointer; background: none; border: none; padding: 0; }
     font-size: 10.5px !important;
   }
 }
+
+/* ============================================================
+   Round 5 — Catch-all aggressive overrides for stubborn cases
+   ============================================================ */
+@media (max-width: 768px) {
+  /* SCAN BUTTON — smaller. Target by accent variant background or by being in a form. */
+  form button {
+    padding: 0 14px !important;
+    height: 40px !important;
+    min-height: 40px !important;
+    font-size: 13px !important;
+    flex-shrink: 0 !important;
+  }
+  form button svg {
+    width: 13px !important;
+    height: 13px !important;
+  }
+  /* URL input box — bigger inner padding, take all remaining space */
+  form input[type="text"] {
+    height: 40px !important;
+    font-size: 14px !important;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+  }
+  /* The kbd "/" hint hides on mobile to give the input more room */
+  form .kbd {
+    display: none !important;
+  }
+  /* Outer form container padding reduced so URL bar takes more visual room */
+  form[style*="padding"] {
+    padding: 4px !important;
+  }
+
+  /* MORE PERMISSIVE selectors for repeat(N) grids — match without space after comma too */
+  [style*="repeat(4,"], [style*="repeat(4 ,"] {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+  }
+  [style*="repeat(5,"] {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+  }
+  [style*="repeat(3,"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* SECTION HEADER catch-all — any flex row with both flex-end + space-between
+     also any row with title + right buttons. Stack vertically. */
+  [style*="flex-end"][style*="space-between"],
+  [style*="space-between"][style*="flex-end"] {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+  }
+  /* Within section headers, the right-side controls (legends, buttons) wrap into rows */
+  [style*="flex-end"][style*="space-between"] > div:last-child,
+  [style*="space-between"][style*="flex-end"] > div:last-child {
+    flex-wrap: wrap !important;
+    justify-content: flex-start !important;
+  }
+
+  /* RECENT PHISHING table — switch to horizontal scroll instead of squishing */
+  /* Any grid header with multiple px columns gets horizontal scroll */
+  [style*="grid-template-columns"][style*="120px"][style*="80px"] {
+    overflow-x: auto !important;
+    grid-template-columns: minmax(110px, 1fr) 100px 70px 90px 30px !important;
+    font-size: 10px !important;
+    padding: 8px 12px !important;
+  }
+
+  /* About page: the 4-step process row — force horizontal scroll if it can't fit as 1fr 1fr */
+  div[style*="repeat(4,"] {
+    overflow-x: auto;
+    padding-bottom: 8px;
+  }
+  /* The arrow separators (→) between cards lose meaning when stacked — hide them */
+  div[style*="repeat(4,"] > svg,
+  div[style*="repeat(4,"] [style*="flex-shrink"][style*="color: var(--text-dim)"] {
+    display: none !important;
+  }
+
+  /* Card minimum widths can push past viewport — clamp them */
+  [style*="min-width"][style*="px"] {
+    min-width: 0 !important;
+  }
+
+  /* "Try →" + example chips on Scan page — center + wrap properly */
+  [style*="margin-top"][style*="flex-wrap: wrap"] {
+    gap: 6px !important;
+    padding: 0 8px !important;
+  }
+}
