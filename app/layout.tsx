@@ -29,6 +29,11 @@ export const metadata: Metadata = {
   title: "SafeTrace — AI-Powered URL Threat Detection",
   description:
     "Paste a URL. Our ML classifier and deep site forensic analyzer cross-check it in under five seconds.",
+  icons: {
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    shortcut: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    apple: [{ url: "/icon.svg", type: "image/svg+xml" }],
+  },
   viewport: {
     width: "device-width",
     initialScale: 1,

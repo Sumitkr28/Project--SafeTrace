@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+  <defs>
+    <linearGradient id="shieldSteel" x1="9" y1="4" x2="39" y2="44" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c8c1b3"/>
+      <stop offset="0.42" stop-color="#6b6458"/>
+      <stop offset="1" stop-color="#2a2722"/>
+    </linearGradient>
+    <linearGradient id="shieldSheen" x1="24" y1="4" x2="24" y2="22" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="shieldGlow" cx="24" cy="24" r="22" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#67e8f9" stop-opacity="0.62"/>
+      <stop offset="0.72" stop-color="#67e8f9" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="48" height="48" rx="12" fill="#0c0b0a"/>
+  <ellipse cx="24" cy="25" rx="21" ry="22" fill="url(#shieldGlow)"/>
+  <path d="M24 5 40 9.4v15.1C40 34.4 33.6 41.1 24 44 14.4 41.1 8 34.4 8 24.5V9.4L24 5Z" fill="url(#shieldSteel)" stroke="#8a8377" stroke-width="1"/>
+  <path d="M24 5 40 9.4v10.9s-7.5 2.4-16 2.4-16-2.4-16-2.4V9.4L24 5Z" fill="url(#shieldSheen)" opacity="0.62"/>
+  <path d="M24 10 35.4 13.1v11.3c0 7.3-4.6 12.6-11.4 15.2-6.8-2.6-11.4-7.9-11.4-15.2V13.1L24 10Z" fill="none" stroke="#67e8f9" stroke-width="1.15" opacity="0.74"/>
+  <line x1="24" y1="15.5" x2="24" y2="20.6" stroke="#67e8f9" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="24" y1="29.6" x2="24" y2="34.7" stroke="#67e8f9" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="15.7" y1="25" x2="20.8" y2="25" stroke="#67e8f9" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="27.2" y1="25" x2="32.3" y2="25" stroke="#67e8f9" stroke-width="1.8" stroke-linecap="round"/>
+  <circle cx="24" cy="25" r="4.6" fill="#0c0b0a" stroke="#67e8f9" stroke-width="1.35"/>
+  <circle cx="24" cy="25" r="2" fill="#67e8f9"/>
+</svg>
