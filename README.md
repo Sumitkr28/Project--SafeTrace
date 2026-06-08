@@ -8,12 +8,12 @@
     <img src="https://img.shields.io/badge/SafeTrace--ai-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="SafeTrace-ai" height="40" />
   </a>
   &nbsp;
-  <a href="https://xorvion-ai.vercel.app/">
-    <img src="https://img.shields.io/badge/By%20Xorvion-0891b2?style=for-the-badge&logo=vercel&logoColor=white" alt="By Xorvion" height="40" />
+  <a href="https://sumitkr28.vercel.app/">
+    <img src="https://img.shields.io/badge/Built%20by%20Sumit%20Kumar-0891b2?style=for-the-badge&logo=vercel&logoColor=white" alt="Built by Sumit Kumar" height="40" />
   </a>
 </p>
 
-<p align="center">A <strong><a href="https://xorvion-ai.vercel.app/">Xorvion</a></strong> product.</p>
+<p align="center">Designed &amp; built end-to-end by <strong><a href="https://sumitkr28.vercel.app/">Sumit Kumar</a></strong> — creator of <strong><a href="https://xorvion-ai.vercel.app/">Xorvion</a></strong>, my studio for shipping AI projects from idea to production.</p>
 
 ---
 
@@ -77,16 +77,21 @@ Two independent verdicts run side-by-side — a Machine Learning model and a dee
 
 Fully stateless — no database, no user accounts, no tracking. Screenshots are inlined as base64 in the API response.
 
-## Built by
+## 👋 About the creator
 
-**Sumit Kumar** — AI/ML Engineer, founder of **[Xorvion](https://xorvion-ai.vercel.app/)**.
+Hi, I'm **Sumit Kumar** — an AI/ML Engineer based in Noida, India who loves taking AI products from idea to production. I build under **Xorvion**, my personal studio where I design, build, and ship multiple AI projects end-to-end. SafeTrace is one of them, and I owned every layer of it: the ML stacking ensemble, the live-browser forensic analyzer, the FastAPI backend, the Next.js interface, and the whole design system.
 
-Connect with me:
+I'm always open to connecting with recruiters, founders, and fellow builders. If you like what you see here, let's talk.
 
-- 📧 [sumitchoudhary2812@gmail.com](mailto:sumitchoudhary2812@gmail.com)
-- 💼 [LinkedIn](https://www.linkedin.com/in/sumitkr28)
-- 💻 [GitHub](https://github.com/Sumitkr28)
-- 🌐 [Xorvion](https://xorvion-ai.vercel.app/)
+- 🌐 **Portfolio:** [sumitkr28.vercel.app](https://sumitkr28.vercel.app/)
+- 💼 **LinkedIn:** [linkedin.com/in/sumit-kumar2812](https://www.linkedin.com/in/sumit-kumar2812/)
+- 🐙 **GitHub:** [github.com/Sumitkr28](https://github.com/Sumitkr28)
+
+### 🚀 Xorvion — my studio
+
+- 🌐 **Website:** [xorvion-ai.vercel.app](https://xorvion-ai.vercel.app/)
+- 🔗 **LinkedIn:** [linkedin.com/company/xorvion](https://linkedin.com/company/xorvion)
+- 🐙 **GitHub:** [github.com/xorvion-ai](https://github.com/xorvion-ai)
 
 ## For developers — running locally
 
@@ -113,7 +118,3 @@ uvicorn api:app --port 7860
 The 2 GB model auto-downloads from <https://huggingface.co/Sumitkr28/safetrace-model> on first run.
 
 </details>
-
-## License
-
-MIT — free to use, fork, and adapt.
