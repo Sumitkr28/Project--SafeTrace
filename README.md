@@ -7,10 +7,6 @@
   <a href="https://safetrace-ai.vercel.app">
     <img src="https://img.shields.io/badge/SafeTrace--ai-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="SafeTrace-ai" height="40" />
   </a>
-  &nbsp;
-  <a href="https://sumitkr28.vercel.app/">
-    <img src="https://img.shields.io/badge/Built%20by%20Sumit%20Kumar-0891b2?style=for-the-badge&logo=vercel&logoColor=white" alt="Built by Sumit Kumar" height="40" />
-  </a>
 </p>
 
 <p align="center">Designed &amp; built end-to-end by <strong><a href="https://sumitkr28.vercel.app/">Sumit Kumar</a></strong> — creator of <strong><a href="https://xorvion-ai.vercel.app/">Xorvion</a></strong>, my studio for shipping AI projects from idea to production.</p>
@@ -92,29 +88,3 @@ I'm always open to connecting with recruiters, founders, and fellow builders. If
 - 🌐 **Website:** [xorvion-ai.vercel.app](https://xorvion-ai.vercel.app/)
 - 🔗 **LinkedIn:** [linkedin.com/company/xorvion](https://linkedin.com/company/xorvion)
 - 🐙 **GitHub:** [github.com/xorvion-ai](https://github.com/xorvion-ai)
-
-## For developers — running locally
-
-<details>
-<summary>Click to expand</summary>
-
-```bash
-# Frontend
-git clone https://github.com/Sumitkr28/Project--SafeTrace.git
-cd Project--SafeTrace
-npm install
-cp .env.example .env.local
-# point NEXT_PUBLIC_API_URL at your backend (default: http://localhost:7860)
-npm run dev
-
-# Backend (separate clone)
-git clone https://huggingface.co/spaces/Sumitkr28/safetrace-api
-cd safetrace-api
-pip install -r requirements.txt
-playwright install chromium
-uvicorn api:app --port 7860
-```
-
-The 2 GB model auto-downloads from <https://huggingface.co/Sumitkr28/safetrace-model> on first run.
-
-</details>
