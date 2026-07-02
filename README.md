@@ -9,7 +9,7 @@
   </a>
 </p>
 
-<p align="center">Designed &amp; built end-to-end by <strong><a href="https://sumitkr28.vercel.app/">Sumit Kumar</a></strong> — creator of <strong><a href="https://xorvion-ai.vercel.app/">Xorvion</a></strong>, my studio for shipping AI projects from idea to production.</p>
+<p align="center">SafeTrace analyzes any URL and returns an explainable, evidence-backed safety verdict in under 5 seconds — combining an ML stacking ensemble with live-browser forensic checks.</p>
 
 ---
 
@@ -75,16 +75,11 @@ Fully stateless — no database, no user accounts, no tracking. Screenshots are 
 
 ## 👋 About the creator
 
-Hi, I'm **Sumit Kumar** — an AI/ML Engineer based in Noida, India who loves taking AI products from idea to production. I build under **Xorvion**, my personal studio where I design, build, and ship multiple AI projects end-to-end. SafeTrace is one of them, and I owned every layer of it: the ML stacking ensemble, the live-browser forensic analyzer, the FastAPI backend, the Next.js interface, and the whole design system.
+Hi, I'm **Sumit Kumar** — an AI/ML Engineer based in Noida, India. I design, build, and ship production-grade AI products end-to-end, and I built **SafeTrace** across every layer: the ML stacking ensemble, the live-browser forensic analyzer, the FastAPI backend, and the Next.js interface.
 
-I'm always open to connecting with recruiters, founders, and fellow builders. If you like what you see here, let's talk.
+I'm always open to connecting with recruiters, founders, and fellow builders — if you like what you see here, let's talk.
 
-- 🌐 **Portfolio:** [sumitkr28.vercel.app](https://sumitkr28.vercel.app/)
+- 🌐 **Portfolio:** [sumitkr28.vercel.app](https://sumitkr28.vercel.app)
 - 💼 **LinkedIn:** [linkedin.com/in/sumit-kumar2812](https://www.linkedin.com/in/sumit-kumar2812/)
 - 🐙 **GitHub:** [github.com/Sumitkr28](https://github.com/Sumitkr28)
-
-### 🚀 Xorvion — my studio
-
-- 🌐 **Website:** [xorvion-ai.vercel.app](https://xorvion-ai.vercel.app/)
-- 🔗 **LinkedIn:** [linkedin.com/company/xorvion](https://linkedin.com/company/xorvion)
-- 🐙 **GitHub:** [github.com/xorvion-ai](https://github.com/xorvion-ai)
+- 🚀 **AI Studio:** [Xorvion](https://xorvion-ai.vercel.app)
